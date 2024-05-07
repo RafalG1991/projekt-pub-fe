@@ -1,0 +1,28 @@
+.navcomp-wrapper {
+    margin-left: 50px;
+    display: flex;
+    align-items: center;
+    width: 50%;
+}
+
+a {
+    margin-right: 20px;
+    padding:0 20px;
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+    background-color: darkred;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+a:hover {
+    background-color: #490101;
+    cursor: pointer;
+}
+
+.active {
+    background-color: #490101;
+}

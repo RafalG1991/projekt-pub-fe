@@ -1,0 +1,47 @@
+.order-modal-wrapper {
+    background-color: seashell;
+    border: 2px solid #f5e4d8;
+    margin: 0 auto;
+    width: 30%;
+    border-radius: 20px;
+    padding: 30px;
+    position: fixed;
+    left: 25%;
+    top: 25%;
+}
+
+.order-modal-wrapper ul {
+    list-style: none;
+}
+
+button {
+    margin: 3px;
+    padding: 5px 10px;
+    border-radius: 50%;
+    border: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+    background-color: darkred;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #490101;
+    cursor: pointer;
+}
+
+.order-modal-exit {
+    position: fixed;
+    right: 45%;
+    top: 25%;
+    padding: 10px 15px;
+    border-radius: 50%;
+    border: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+    background-color: darkred;
+    transition: 0.3s;
+}
+

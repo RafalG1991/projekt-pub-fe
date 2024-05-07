@@ -1,0 +1,15 @@
+.nav-container {
+    height: 20vh;
+    width: 100vw;
+    padding: 0 50px 0 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: darkred;
+}
+
+.logo {
+    font-size: 32px;
+    font-weight: bold;
+    color: white;
+}

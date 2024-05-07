@@ -1,0 +1,25 @@
+.restaurant-tables-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.table {
+    width: 150px;
+    height: 150px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.table.FREE {
+    background-color: lightgreen;
+}
+
+.table.BUSY {
+    background-color: tomato;
+}
