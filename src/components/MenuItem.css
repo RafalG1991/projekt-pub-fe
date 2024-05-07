@@ -1,0 +1,70 @@
+.item-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 40px 40px 40px 0;
+    margin: 0 40px;
+    border-bottom: 1px solid #b4b3b3;
+}
+
+.item-description {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.item-order {
+    display: flex;
+    align-self: flex-end;
+    width: 20%;
+}
+
+.item-order form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.item-order form input {
+    width: 30%;
+}
+
+.item-order form label {
+    padding: 0 10px;
+    font-weight: bold;
+}
+
+.item-order form button {
+    width: 70%;
+    margin: 10px;
+    padding: 10px 0;
+    justify-self: center;
+    border-radius: 20px;
+    border: none;
+    background-color: darkred;
+    color: white;
+    font-weight: bold;
+    transition: 0.5s;
+}
+
+.item-order form button:hover {
+    background-color: #490101;
+}
+
+.item-description p {
+    margin: 0;
+    padding-bottom: 5px;
+}
+
+.item-description p:first-child {
+    font-weight: bold;
+}
+
+.item-description p:nth-child(2) {
+    font-style: italic;
+}
+
+.item-description p:nth-child(3) {
+    font-weight: bold;
+    color: chocolate;
+}

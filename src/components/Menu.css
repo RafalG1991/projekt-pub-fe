@@ -1,0 +1,7 @@
+.menu-wrapper {
+    margin: 50px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    background-color: seashell;
+}
