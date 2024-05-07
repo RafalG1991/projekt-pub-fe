@@ -9,6 +9,7 @@ import './index.css';
 import MenuView from "./components/MenuView"
 import TablesView from "./components/TablesView"
 import ErrorPage from './components/ErrorPage';
+import MenuListView from "./components/MenuListView";
 
 const router = createBrowserRouter([
   {
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/menu",
-    element: <TablesView />,
+    element: <MenuListView />,
     errorElement: <ErrorPage />,
   },
 ]);
