@@ -26,11 +26,6 @@ button {
     transition: 0.3s;
 }
 
-button:hover {
-    background-color: #490101;
-    cursor: pointer;
-}
-
 .modal-exit {
     position: fixed;
     right: 45%;
