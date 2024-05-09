@@ -8,7 +8,7 @@ const MenuItem = props => {
         <div className="drink-details">
           <h2 className="drink-name">{props.item.name}</h2>
           <p className="drink-description">{props.item.description}</p>
-          <p className="drink-price">{props.item.price}</p>
+          <p className="drink-price">${props.item.price}</p>
         </div>
       </div>
 )

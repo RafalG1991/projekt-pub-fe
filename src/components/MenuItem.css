@@ -47,9 +47,6 @@
     transition: 0.5s;
 }
 
-.item-order form button:hover {
-    background-color: #490101;
-}
 
 .item-description p {
     margin: 0;
