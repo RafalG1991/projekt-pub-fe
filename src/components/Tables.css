@@ -1,25 +1,107 @@
 .restaurant-tables-container {
+    margin: 50px;
+    padding: 20px;
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-between;
+    border-radius: 20px;
+    background-color: #222;
 }
 
-.table {
-    width: 150px;
-    height: 150px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    margin: 10px;
-    padding: 10px;
+.table-card {
+    text-align: center;
+    color: #fff;
+    background-color: #222;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    width: calc(33.33% - 20px); /* 33.33% width for three cards with 20px margin */
+    min-height: 300px;
+    margin-bottom: 20px; /* Add margin to space between rows */
+}
+
+.table-card.FREE {
+    background-color: #28a745;
+}
+
+.reserve-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 18px;
+    display: none; /* Hidden by default */
+}
+
+.table-card:hover .reserve-message {
+    display: block;
+}
+
+.table-card.FREE:hover {
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+.table-card.BUSY {
+    background-color: #b5081b;
+}
+
+.table-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+}
+
+.table-details {
+    padding: 20px;
+}
+
+.table-number {
+    margin-top: 0;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.table-capacity {
+    font-size: 20px;
+}
+
+.table-status {
+    font-size: 20px;
+    font-style: italic;
+}
+
+
+.table-buttons {
     display: flex;
-    flex-direction: column;
+    margin-bottom: 10px;
     justify-content: center;
-    align-items: center;
 }
 
-.table.FREE {
-    background-color: lightgreen;
+.table-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-right: 10px;
 }
 
-.table.BUSY {
-    background-color: tomato;
+.close-order-button {
+    background-color: #dc3545; /* Red for close order button */
+}
+
+.show-order-button {
+    background-color: #007bff; /* Blue for show order button */
+}
+
+.table-button:hover {
+    opacity: 0.8;
 }
