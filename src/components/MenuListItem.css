@@ -1,0 +1,46 @@
+.drink-card {
+    margin-bottom: 20px;
+    background-color: #222;
+    width: calc(33.33% - 20px);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    color: #fff;
+}
+
+.drink-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.drink-image-container {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 10px 10px 0 0;
+}
+
+.drink-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.drink-details {
+    padding: 20px;
+}
+
+.drink-name {
+    margin-top: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.drink-description {
+    font-size: 18px;
+}
+
+.drink-price {
+    font-size: 20px;
+    font-weight: bold;
+}

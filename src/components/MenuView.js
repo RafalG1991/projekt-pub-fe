@@ -22,6 +22,7 @@ function MenuView() {
             id: item[0],
             name: item[1],
             price: item[2],
+            description: item[3],
           }
         }))
         setMenuList(menu);

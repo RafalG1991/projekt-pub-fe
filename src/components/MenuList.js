@@ -1,4 +1,3 @@
-import MenuItem from "./MenuItem";
 import './Menu.css';
 import MenuListItem from "./MenuListItem";
 
