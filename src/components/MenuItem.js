@@ -24,26 +24,28 @@ const MenuItem = props => {
   }
 
     return (
-        <div className="item-wrapper">
-            <div className="item-description">
-                <p>{props.item.name}</p>
-                <p>placeholder</p>
-                <p>${props.item.price}</p>
-            </div>
-            <div className="item-order">
-                <form onSubmit={submitHandler}>
-                    <label htmlFor="amount">Amount</label>
-                    <input
-                      id="amount"
-                      type="number"
-                      min="1"
-                      value={amount}
-                      onChange={amountInputHandler}
-                    />
-                    <button type="submit">Add</button>
-                </form>
-            </div>
+      <div className="item-wrapper">
+        <img src={process.env.PUBLIC_URL + `/${props.item.name.toLowerCase()}.jpg`}
+             alt={props.item.name}/>
+        <div className="item-description">
+          <p>{props.item.name}</p>
+          <p>{props.item.description}</p>
+          <p>${props.item.price}</p>
         </div>
+        <div className="item-order">
+          <form onSubmit={submitHandler}>
+            <label htmlFor="amount">Amount</label>
+            <input
+              id="amount"
+              type="number"
+              min="1"
+              value={amount}
+              onChange={amountInputHandler}
+            />
+            <button type="submit">Add</button>
+          </form>
+        </div>
+      </div>
     )
 }
 

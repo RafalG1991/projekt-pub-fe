@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 
 import Navigation from "./Navigation";
 import MenuList from "./MenuList";
+import {Loader} from "./Loader";
 
 function MenuListView() {
+  const [isLoading, setIsLoading] = useState(false);
   const [menuList, setMenuList] = useState([]);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:5000/order/menu')
+    setIsLoading(true);
+    fetch('https://projekt-pub.onrender.com/order/menu')
       .then(response => response.json())
       .then(r => {
         const menu = r.menu.map((item => {
@@ -19,6 +22,7 @@ function MenuListView() {
             description: item[3],
           }
         }))
+        setIsLoading(false);
         setMenuList(menu);
       });
   }, []);
@@ -26,7 +30,8 @@ function MenuListView() {
   return (
     <>
       <Navigation/>
-      <MenuList items={menuList}/>
+      {isLoading ?
+        <Loader /> : <MenuList items={menuList}/>}
     </>
   );
 }

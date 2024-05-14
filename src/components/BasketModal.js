@@ -19,7 +19,7 @@ const BasketModal = props => {
 
   const addOrder = async (id, choice, quantity) => {
     console.log(id, choice, quantity)
-    const res = await fetch('http://127.0.0.1:5000/order/add', {
+    const res = await fetch('https://projekt-pub.onrender.com/order/add', {
       method: 'POST',
       headers: {
         'Access-Control-Allow-Origin':'origin',

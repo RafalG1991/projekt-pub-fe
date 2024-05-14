@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Header from "./Header";
 import Menu from "./Menu";
 import BasketModal from "./BasketModal";
 import {useParams} from "react-router-dom";
+import {Loader} from "./Loader";
 
 function MenuView() {
+  const [isLoading, setIsLoading] = useState(false);
   let { orderId } = useParams();
   const [itemsCounter, setItemsCounter] = useState(0);
   const [basket, setBasket] = useState([]);
@@ -13,7 +15,8 @@ function MenuView() {
   const [menuList, setMenuList] = useState([]);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:5000/order/menu')
+    setIsLoading(true);
+    fetch('https://projekt-pub.onrender.com/order/menu')
       .then(response => response.json())
       .then(r => {
         const menu = r.menu.map((item => {
@@ -25,6 +28,7 @@ function MenuView() {
             description: item[3],
           }
         }))
+        setIsLoading(false);
         setMenuList(menu);
       });
   }, []);
@@ -88,7 +92,11 @@ function MenuView() {
       setBasket(tempBasket);
     }
   }
-  console.log(basket)
+
+  if (isLoading) {
+    return <Loader />
+  }
+
   return (
     <>
       <Header basket={basket} itemsCounter={itemsCounter} toggleBasket={toggleBasket}/>

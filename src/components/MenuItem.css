@@ -1,21 +1,39 @@
 .item-wrapper {
     display: flex;
+    margin-bottom: 20px;
     flex-direction: row;
-    justify-content: space-between;
-    padding: 40px 40px 40px 0;
-    margin: 0 40px;
     border-bottom: 1px solid #b4b3b3;
+    width: calc(50% - 20px);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    color: #fff;
+}
+
+.item-wrapper:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.item-wrapper img {
+    width: 150px;
+    overflow: hidden;
+    border-radius: 10px 10px 0 0;
+    height: 200px;
+    object-fit: cover;
 }
 
 .item-description {
     display: flex;
+    width: 50%;
     flex-direction: column;
-
 }
 
 .item-order {
     display: flex;
-    align-self: flex-end;
+    margin-left: 5px;
+    align-self: center;
     width: 20%;
 }
 
@@ -23,6 +41,8 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .item-order form input {
@@ -49,7 +69,7 @@
 
 
 .item-description p {
-    margin: 0;
+    margin-left: 10px;
     padding-bottom: 5px;
 }
 
@@ -59,6 +79,8 @@
 
 .item-description p:nth-child(2) {
     font-style: italic;
+    font-size: 12px;
+    text-align: justify;
 }
 
 .item-description p:nth-child(3) {

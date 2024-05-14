@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import './Tables.css';
 import OrderModal from "./OrderModal";
+import {Loader} from "./Loader";
 const Tables = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [tablesData, setTablesData] = useState([]);
   const [resStatus, setResStatus] = useState([]);
   const [order, setOrder] = useState([]);
@@ -10,15 +12,17 @@ const Tables = () => {
     setOrderToggle(prevState => !prevState);
   }
   useEffect(() => {
-    fetch('http://127.0.0.1:5000/lounge')
+    setIsLoading(true);
+    fetch('https://projekt-pub.onrender.com/lounge')
       .then(response => response.json())
       .then(r => {
+        setIsLoading(false);
         setTablesData(r);
       });
   }, [resStatus]);
   const openOrder = async (status, tableNumber, customersNumber) => {
     if(status === 'FREE') {
-      const res = await fetch('http://127.0.0.1:5000/order/open', {
+      const res = await fetch('https://projekt-pub.onrender.com/order/open', {
         method: 'POST',
         headers: {
           'Access-Control-Allow-Origin':'origin',
@@ -35,7 +39,7 @@ const Tables = () => {
 
   const closeOrder = async (status, tableNumber) => {
     if(status === 'BUSY') {
-      const res = await fetch('http://127.0.0.1:5000/order/close', {
+      const res = await fetch('https://projekt-pub.onrender.com/order/close', {
         method: 'POST',
         headers: {
           'Access-Control-Allow-Origin':'origin',
@@ -51,12 +55,16 @@ const Tables = () => {
 
   const showOrder = async (status, tableNumber) => {
     if (status === 'BUSY') {
-      fetch(`http://127.0.0.1:5000/order/show/${tableNumber}`)
+      fetch(`https://projekt-pub.onrender.com/order/show/${tableNumber}`)
         .then(response => response.json())
         .then(r => {
           setOrder(r.order);
         });
     }
+  }
+
+  if (isLoading) {
+    return <Loader />
   }
 
   return (
