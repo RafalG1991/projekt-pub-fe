@@ -22,6 +22,7 @@ const Tables = () => {
   }, [resStatus]);
   const openOrder = async (status, tableNumber, customersNumber) => {
     if(status === 'FREE') {
+      setIsLoading(true);
       const res = await fetch('https://projekt-pub.onrender.com/order/open', {
         method: 'POST',
         headers: {
@@ -33,6 +34,7 @@ const Tables = () => {
           customersNumber,
         }),
       });
+      setIsLoading(false);
       setResStatus(res);
     }
   }
