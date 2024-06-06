@@ -10,6 +10,8 @@ import MenuView from "./components/MenuView"
 import TablesView from "./components/TablesView"
 import ErrorPage from './components/ErrorPage';
 import MenuListView from "./components/MenuListView";
+import OrdersView from "./components/OrdersView";
+import Supplies from "./components/Supplies";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +27,16 @@ const router = createBrowserRouter([
   {
     path: "/menu",
     element: <MenuListView />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/orders",
+    element: <OrdersView />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/supplies",
+    element: <Supplies />,
     errorElement: <ErrorPage />,
   },
 ]);

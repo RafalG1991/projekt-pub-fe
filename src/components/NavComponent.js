@@ -20,6 +20,22 @@ const NavComponent = props => {
       >
         Menu
       </NavLink>
+      <NavLink
+        to="/orders"
+        className={({isActive, isPending}) =>
+          isPending ? "pending" : isActive ? "active" : ""
+        }
+      >
+        Orders
+      </NavLink>
+      <NavLink
+        to="/supplies"
+        className={({isActive, isPending}) =>
+          isPending ? "pending" : isActive ? "active" : ""
+        }
+      >
+        Storage
+      </NavLink>
     </div>
 
   )
