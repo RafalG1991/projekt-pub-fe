@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 import Header from "./Header";
 import Menu from "./Menu";
 import BasketModal from "./BasketModal";
@@ -16,11 +17,11 @@ function MenuView() {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch('https://projekt-pub.onrender.com/order/menu')
+    // fetch('https://projekt-pub.onrender.com/order/menu')
+    fetch('http://localhost:5000/order/menu')
       .then(response => response.json())
       .then(r => {
         const menu = r.menu.map((item => {
-          console.log(item)
           return {
             id: item[0],
             name: item[1],
@@ -54,6 +55,9 @@ function MenuView() {
       tempBasket.push(item);
     }
     setBasket(tempBasket);
+    toast.success(`${item.name} added to basket!`, {
+      position: "bottom-center"
+    });
   }
 
   useEffect(() => {
@@ -93,6 +97,23 @@ function MenuView() {
     }
   }
 
+  const clearBasket = (item) => {
+    if(basket.map(el => el.name).includes(item.name)) {
+      let tempBasket = basket.map(el => {
+        if(el.name===item.name) {
+          return {
+            ...el,
+            amount: 0,
+          };
+        } else {
+          return el;
+        }
+      });
+      tempBasket = tempBasket.filter(el => el.amount !== 0);
+      setBasket(tempBasket);
+    }
+  }
+
   if (isLoading) {
     return <Loader />
   }
@@ -101,7 +122,9 @@ function MenuView() {
     <>
       <Header basket={basket} itemsCounter={itemsCounter} toggleBasket={toggleBasket}/>
       <Menu items={menuList} basket={basket} add={addItemToBasket} />
-      {basketToggle && <BasketModal orderId={orderId} basket={basket} addAmount={addAmount} removeAmount={removeAmount} toggleBasket={toggleBasket}/>}
+      {basketToggle && <BasketModal orderId={orderId} basket={basket} addAmount={addAmount} removeAmount={removeAmount} toggleBasket={toggleBasket}
+       clearBasket={clearBasket}/>}
+      <ToastContainer />
     </>
   );
 }

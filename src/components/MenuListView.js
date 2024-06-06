@@ -10,11 +10,10 @@ function MenuListView() {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch('https://projekt-pub.onrender.com/order/menu')
+    fetch('http://localhost:5000/order/menu')
       .then(response => response.json())
       .then(r => {
         const menu = r.menu.map((item => {
-          console.log(item)
           return {
             id: item[0],
             name: item[1],
