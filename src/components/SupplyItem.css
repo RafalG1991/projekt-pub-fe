@@ -1,0 +1,83 @@
+.item-wrapper {
+    display: flex;
+    margin-bottom: 20px;
+    flex-direction: row;
+    border-bottom: 1px solid #b4b3b3;
+    width: calc(33.3% - 20px);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    color: #fff;
+}
+
+.item-wrapper:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.item-wrapper img {
+    width: 150px;
+    overflow: hidden;
+    border-radius: 10px 10px 0 0;
+    height: 200px;
+    object-fit: cover;
+}
+
+.item-description {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+}
+
+.item-order {
+    display: flex;
+    margin-left: 5px;
+    align-self: center;
+    width: 20%;
+}
+
+.item-order form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.item-order form input {
+    width: 80%;
+}
+
+.item-order form label {
+    padding: 0 10px;
+    font-weight: bold;
+}
+
+.item-order form button {
+    width: 70%;
+    margin: 10px;
+    padding: 10px 0;
+    justify-self: center;
+    border-radius: 20px;
+    border: none;
+    background-color: darkred;
+    color: white;
+    font-weight: bold;
+    transition: 0.5s;
+}
+
+
+.item-description p {
+    margin-left: 10px;
+    padding-bottom: 5px;
+}
+
+.item-description p:first-child {
+    font-weight: bold;
+}
+
+.item-description p:nth-child(2) {
+    font-style: italic;
+    font-size: 16px;
+}
