@@ -10,7 +10,7 @@ function MenuListView() {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch('http://localhost:5000/order/menu')
+    fetch('https://projekt-pub.onrender.com/order/menu')
       .then(response => response.json())
       .then(r => {
         const menu = r.menu.map((item => {

@@ -20,7 +20,7 @@ const Tables = props => {
   useEffect(() => {
     setIsLoading(true);
     // fetch('https://projekt-pub.onrender.com/lounge')
-    fetch('http://localhost:5000/lounge')
+    fetch('https://projekt-pub.onrender.com/lounge')
       .then(response => response.json())
       .then(r => {
         setIsLoading(false);
@@ -30,7 +30,7 @@ const Tables = props => {
   const openOrder = async (status, tableNumber, customersNumber) => {
     if(status === 'FREE') {
       setIsLoading(true);
-      const res = await fetch('http://localhost:5000/order/open', {
+      const res = await fetch('https://projekt-pub.onrender.com/order/open', {
         method: 'POST',
         headers: {
           'Access-Control-Allow-Origin':'origin',
@@ -50,7 +50,7 @@ const Tables = props => {
   const closeOrder = async (status, tableNumber) => {
     if(status === 'BUSY') {
       setIsLoading(true);
-      const res = await fetch('http://localhost:5000/order/close', {
+      const res = await fetch('https://projekt-pub.onrender.com/order/close', {
         method: 'POST',
         headers: {
           'Access-Control-Allow-Origin':'origin',
@@ -68,7 +68,7 @@ const Tables = props => {
   const showOrder = async (status, tableNumber) => {
     if (status === 'BUSY') {
       setIsOrderLoading(true);
-      fetch(`http://localhost:5000/order/show/${tableNumber}`)
+      fetch(`https://projekt-pub.onrender.com/order/show/${tableNumber}`)
         .then(response => response.json())
         .then(r => {
           setIsOrderLoading(false);

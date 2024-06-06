@@ -17,7 +17,7 @@ const SupplyItem = props => {
       return;
     }
     setIsLoading(true);
-    const res = await fetch('http://localhost:5000/report/add', {
+    const res = await fetch('https://projekt-pub.onrender.com/report/add', {
       method: 'POST',
       headers: {
         'Access-Control-Allow-Origin':'origin',

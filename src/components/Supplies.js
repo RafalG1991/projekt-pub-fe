@@ -15,7 +15,7 @@ const Supplies = props => {
     useEffect(() => {
         setIsLoading(true);
         // fetch('https://projekt-pub.onrender.com/report/inventory')
-        fetch('http://localhost:5000/report/inventory')
+        fetch('https://projekt-pub.onrender.com/report/inventory')
           .then(response => response.json())
           .then(r => {
               setIsLoading(false);

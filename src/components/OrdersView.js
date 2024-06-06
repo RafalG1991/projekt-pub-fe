@@ -10,7 +10,7 @@ const OrdersView = () => {
   useEffect(() => {
     setIsLoading(true);
     // fetch('https://projekt-pub.onrender.com/report/orders')
-    fetch('http://localhost:5000/report/orders')
+    fetch('https://projekt-pub.onrender.com/report/orders')
       .then(response => response.json())
       .then(r => {
         setIsLoading(false);
