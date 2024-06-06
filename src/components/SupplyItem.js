@@ -36,15 +36,15 @@ const SupplyItem = props => {
   }
 
     return (
-      <div className="item-wrapper">
+      <div className="supply-item-wrapper">
         <img src={process.env.PUBLIC_URL + `/${props.item[1].toLowerCase()}.jpg`}
              alt={props.item[1]}/>
-        <div className="item-description">
+        <div className="supply-item-description">
           <p>{props.item[1]}</p>
           <p>In stock: {props.item[2]}</p>
         </div>
         {isLoading ? <Loader/> :
-          <div className="item-order">
+          <div className="supply-item-order">
           <form onSubmit={submitHandler}>
             <label htmlFor="amount">Amount</label>
             <input

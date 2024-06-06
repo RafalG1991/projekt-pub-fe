@@ -24,7 +24,7 @@ const MenuItem = props => {
   }
 
     return (
-      <div className="item-wrapper">
+      <div className="menu-item-wrapper">
         <img src={process.env.PUBLIC_URL + `/${props.item.name.toLowerCase()}.jpg`}
              alt={props.item.name}/>
         <div className="item-description">

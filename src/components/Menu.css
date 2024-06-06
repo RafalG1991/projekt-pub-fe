@@ -8,3 +8,10 @@
     border-radius: 20px;
     background-color: #222;
 }
+
+@media screen and (max-width: 900px) {
+    .menu-wrapper {
+        margin: 20px;
+        flex-direction: column;
+    }
+}

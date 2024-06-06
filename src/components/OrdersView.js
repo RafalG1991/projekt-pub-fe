@@ -35,12 +35,12 @@ const OrdersView = () => {
         <tbody>
         {ordersData.orders?.map((order) => (
           <tr key={order[0]}>
-            <td>{order[0]}</td>
-            <td>{order[1]}</td>
-            <td>{order[2]}</td>
-            <td>{order[3]}</td>
-            <td>${order[4].toFixed(2)}</td>
-            <td>
+            <td data-label="Order ID">{order[0]}</td>
+            <td data-label="Table Number">{order[1]}</td>
+            <td data-label="Number of Customers">{order[2]}</td>
+            <td data-label="Ordered Items">{order[3]}</td>
+            <td data-label="Bill">${order[4].toFixed(2)}</td>
+            <td data-label="Order Status">
                             <span className={`order-status ${order[5].toLowerCase()}`}>
                                 {order[5]}
                             </span>

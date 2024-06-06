@@ -13,6 +13,8 @@
 
 .modal-wrapper ul {
     list-style: none;
+    padding: 0;
+    margin: 0 auto;
 }
 
 button {
@@ -95,4 +97,24 @@ button {
 
 .basket-button:hover {
     opacity: 0.8;
+}
+
+@media screen and (max-width: 940px) {
+    .modal-wrapper {
+        padding: 10px;
+    }
+
+    .modal-exit {
+        padding: 15px 20px;
+        font-size: 12px;
+    }
+    .order-desc {
+        font-size: 14px;
+    }
+
+    .basket-button {
+        padding: 5px 10px;
+        font-size: 12px;
+        margin-right: 2px;
+    }
 }

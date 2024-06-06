@@ -46,3 +46,39 @@
     font-size: 20px;
     font-weight: bold;
 }
+
+@media screen and (max-width: 900px) {
+    .drink-card {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 10px;
+        width: calc(100% - 20px);
+    }
+
+    .drink-image-container {
+        width: 50%;
+    }
+
+    .drink-image {
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .drink-details {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .drink-name {
+        font-size: 16px;
+    }
+
+    .drink-description {
+        min-height: 100px;
+        font-size: 13px;
+    }
+
+    .drink-price {
+        font-size: 15px;
+    }
+}

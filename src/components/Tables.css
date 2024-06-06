@@ -55,7 +55,7 @@
     padding: 10px 20px;
     border-radius: 5px;
     font-size: 18px;
-    display: none; /* Hidden by default */
+    display: none;
 }
 
 .table-card:hover .reserve-message {
@@ -123,4 +123,43 @@
 
 .table-button:hover {
     opacity: 0.8;
+}
+
+@media screen and (max-width: 850px) {
+    .restaurant-tables-container {
+        padding: 20px;
+        flex-direction: column;
+    }
+
+    .table-card {
+        width: calc(100% - 20px);
+        min-height: 200px;
+    }
+
+    .guest-counter label {
+        font-size: 14px;
+    }
+
+    .guest-counter input {
+        padding: 5px 5px;
+        font-size: 12px;
+    }
+
+    .table-number {
+        font-size: 20px;
+    }
+
+    .table-capacity {
+        font-size: 15px;
+    }
+
+    .table-status {
+        font-size: 15px;
+    }
+
+    .table-button {
+        padding: 5px 10px;
+        font-size: 14px;
+        margin-right: 5px;
+    }
 }
