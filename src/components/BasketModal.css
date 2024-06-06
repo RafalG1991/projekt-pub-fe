@@ -1,8 +1,9 @@
 .modal-wrapper {
+    min-height: 50vh;
     background-color: seashell;
     border: 2px solid #f5e4d8;
     margin: 0 auto;
-    width: 30%;
+    width: 50vw;
     border-radius: 20px;
     padding: 30px;
     position: fixed;
@@ -28,11 +29,12 @@ button {
 
 .modal-exit {
     position: fixed;
-    right: 45%;
-    top: 25%;
-    padding: 10px 15px;
+    right: 22vw;
+    top: 22%;
+    padding: 20px 30px;
     border-radius: 50%;
     border: none;
+    font-size: 18px;
     font-weight: bold;
     text-transform: uppercase;
     color: white;
@@ -40,3 +42,57 @@ button {
     transition: 0.3s;
 }
 
+.order-desc {
+    cursor: default;
+    text-align: center;
+    font-size: 16px;
+    color: #000000;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.order-desc:hover {
+    background-color: #bdc3c7;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.empty-desc {
+    font-size: 1.2em;
+    color: #ff0000;
+    text-align: center;
+    padding: 20px;
+    border: 2px dashed #ff0000;
+    background-color: #fff0f0;
+    margin: 20px auto;
+    width: 80%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.empty-desc:hover {
+    background-color: #ffe6e6;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.basket-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-right: 10px;
+}
+
+.reduce-button {
+    background-color: #dc3545;
+}
+
+.add-button {
+    background-color: #007bff;
+}
+
+.basket-button:hover {
+    opacity: 0.8;
+}
