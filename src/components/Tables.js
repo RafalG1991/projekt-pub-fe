@@ -2,18 +2,25 @@ import React, {useEffect, useState} from 'react';
 import './Tables.css';
 import OrderModal from "./OrderModal";
 import {Loader} from "./Loader";
-const Tables = () => {
+const Tables = props => {
   const [isLoading, setIsLoading] = useState(false);
+  const [isOrderLoading, setIsOrderLoading] = useState(false);
   const [tablesData, setTablesData] = useState([]);
   const [resStatus, setResStatus] = useState([]);
   const [order, setOrder] = useState([]);
   const [orderToggle, setOrderToggle] = useState(false);
+  const [amount, setAmount] = useState(1);
+
+  const amountInputHandler = event => {
+    setAmount(event.target.value);
+  }
   const toggleOrder = () => {
     setOrderToggle(prevState => !prevState);
   }
   useEffect(() => {
     setIsLoading(true);
-    fetch('https://projekt-pub.onrender.com/lounge')
+    // fetch('https://projekt-pub.onrender.com/lounge')
+    fetch('http://localhost:5000/lounge')
       .then(response => response.json())
       .then(r => {
         setIsLoading(false);
@@ -23,12 +30,13 @@ const Tables = () => {
   const openOrder = async (status, tableNumber, customersNumber) => {
     if(status === 'FREE') {
       setIsLoading(true);
-      const res = await fetch('https://projekt-pub.onrender.com/order/open', {
+      const res = await fetch('http://localhost:5000/order/open', {
         method: 'POST',
         headers: {
           'Access-Control-Allow-Origin':'origin',
           'Content-Type': 'application/json',
         },
+
         body: JSON.stringify({
           tableNumber,
           customersNumber,
@@ -41,7 +49,8 @@ const Tables = () => {
 
   const closeOrder = async (status, tableNumber) => {
     if(status === 'BUSY') {
-      const res = await fetch('https://projekt-pub.onrender.com/order/close', {
+      setIsLoading(true);
+      const res = await fetch('http://localhost:5000/order/close', {
         method: 'POST',
         headers: {
           'Access-Control-Allow-Origin':'origin',
@@ -51,15 +60,18 @@ const Tables = () => {
           tableNumber,
         }),
       });
+      setIsLoading(false);
       setResStatus(res);
     }
   }
 
   const showOrder = async (status, tableNumber) => {
     if (status === 'BUSY') {
-      fetch(`https://projekt-pub.onrender.com/order/show/${tableNumber}`)
+      setIsOrderLoading(true);
+      fetch(`http://localhost:5000/order/show/${tableNumber}`)
         .then(response => response.json())
         .then(r => {
+          setIsOrderLoading(false);
           setOrder(r.order);
         });
     }
@@ -71,8 +83,22 @@ const Tables = () => {
 
   return (
     <div className="restaurant-tables-container">
-      {tablesData.tables?.map((table) => (
-          <div key={table[0]} className={`table-card ${table[3]}`} onClick={() => openOrder(table[3], table[0], 1)}>
+      <div className="guest-counter">
+        <label htmlFor="amount">Number of guests: </label>
+        <input
+          id="amount"
+          type="number"
+          min="1"
+          max="4"
+          value={amount}
+          onChange={amountInputHandler}
+        />
+      </div>
+      {tablesData.tables?.map((table) => {
+        if (amount <= Number(table[2])) {
+          return (
+            <div key={table[0]} className={`table-card ${table[3]}`}
+                 onClick={() => openOrder(table[3], table[0], amount)}>
             <div className="table-details">
               <h2 className="table-number">Table {table[1]}</h2>
               <p className="table-capacity">Capacity: {table[2]} people</p>
@@ -92,10 +118,10 @@ const Tables = () => {
                         onClick={() => closeOrder(table[3], table[0])}>Close order</button> : ''}
             </div>
           </div>
-        )
-      )}
+        )}
+      })}
       {
-        orderToggle && <OrderModal order={order} toggleOrder={toggleOrder}/>
+        orderToggle && <OrderModal order={order} toggleOrder={toggleOrder} isLoading={isOrderLoading}/>
       }
     </div>
   );
