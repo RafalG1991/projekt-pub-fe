@@ -18,9 +18,10 @@ function MenuView() {
   useEffect(() => {
     setIsLoading(true);
     // fetch('https://projekt-pub.onrender.com/order/menu')
-    fetch('https://projekt-pub.onrender.com/order/menu')
+    fetch('http://127.0.0.1:5000/order/menu')
       .then(response => response.json())
       .then(r => {
+        console.log("r", r)
         const menu = r.menu.map((item => {
           return {
             id: item[0],

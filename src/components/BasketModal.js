@@ -32,7 +32,7 @@ const BasketModal = props => {
 
   const addOrder = async (id, choice, quantity) => {
     setIsLoading(true);
-    const res = await fetch('https://projekt-pub.onrender.com/order/add', {
+    const res = await fetch('http://127.0.0.1:5000/order/add', {
       method: 'POST',
       headers: {
         'Access-Control-Allow-Origin':'origin',
@@ -56,6 +56,7 @@ const BasketModal = props => {
         position: "bottom-center"
       });
     } else {
+      console.log(data.added)
       toast.error("Order cannot be added! Not enough ingredients!", {
         position: "bottom-center"
       });
