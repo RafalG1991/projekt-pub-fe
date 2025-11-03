@@ -10,7 +10,7 @@ const OrdersView = () => {
   useEffect(() => {
     setIsLoading(true);
     // fetch('https://projekt-pub.onrender.com/report/orders')
-    fetch('https://projekt-pub.onrender.com/report/orders')
+    fetch('http://127.0.0.1:5000/report/orders')
       .then(response => response.json())
       .then(r => {
         setIsLoading(false);
@@ -38,11 +38,11 @@ const OrdersView = () => {
             <td data-label="Order ID">{order[0]}</td>
             <td data-label="Table Number">{order[1]}</td>
             <td data-label="Number of Customers">{order[2]}</td>
-            <td data-label="Ordered Items">{order[3]}</td>
-            <td data-label="Bill">${order[4].toFixed(2)}</td>
+            <td data-label="Ordered Items">{order[5]}</td>
+            <td data-label="Bill">${order[4]}</td>
             <td data-label="Order Status">
-                            <span className={`order-status ${order[5].toLowerCase()}`}>
-                                {order[5]}
+                            <span className={`order-status ${order[3].toLowerCase()}`}>
+                                {order[3]}
                             </span>
             </td>
           </tr>
