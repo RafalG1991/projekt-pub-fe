@@ -2,8 +2,10 @@ import './OrderModal.css';
 import {Link} from "react-router-dom";
 import {countWords} from "../utils/wordsCounter";
 import {Loader} from "./Loader";
+import {parseDrinks} from "../utils/parseDrinks";
 
 const OrderModal = props => {
+  console.log(props.order)
   return (
     <div className="order-modal-wrapper">
 
@@ -15,7 +17,7 @@ const OrderModal = props => {
           {props.order.map(item => {
             return (
               <li key={item[0]}>
-                {item[3] ? (countWords(item[3])).map(drink => <div className="drink-name">
+                {item[3] ? (parseDrinks(item[3])).map(drink => <div className="drink-name">
                     <p>{drink.word}</p>
                     <p>{drink.count}</p>
                   </div>
@@ -26,7 +28,7 @@ const OrderModal = props => {
                 </div>
                 <hr/>
                 <p className="total">Total: ${Number(item[4]).toFixed(2)} </p>
-                <Link to={`/${item[0]}`}>Add to order</Link>
+                <Link to={`/${item[1]}`}>Add to order</Link>
               </li>
             )
           })}
