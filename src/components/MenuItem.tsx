@@ -1,0 +1,68 @@
+import { useState } from "react";
+import "./MenuItem.css";
+import type { BasketItem } from "./BasketModal";
+
+type MenuItemData = {
+  id: number;
+  name: string;
+  price: number;
+  description?: string;
+};
+
+type Props = {
+  item: MenuItemData;
+  basket: BasketItem[];
+  add: (item: BasketItem) => void;
+};
+
+const MenuItem = (props: Props) => {
+  const [amount, setAmount] = useState<number>(0);
+  console.log(props)
+
+  const amountInputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAmount(Number(event.target.value));
+  };
+
+  const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!amount) return;
+
+    props.add({
+      id: Math.random(), // jeśli backend nadaje ID, można to później poprawić
+      name: props.item.name,
+      price: props.item.price,
+      amount: Number(amount),
+    });
+
+    setAmount(0);
+  };
+
+  return (
+    <div className="menu-item-wrapper">
+      <img
+        src={`${process.env.PUBLIC_URL}/${props.item.name.toLowerCase()}.jpg`}
+        alt={props.item.name}
+      />
+      <div className="item-description">
+        <p>{props.item.name}</p>
+        {props.item.description && <p>{props.item.description}</p>}
+        <p>${props.item.price}</p>
+      </div>
+      <div className="item-order">
+        <form onSubmit={submitHandler}>
+          <label htmlFor="amount">Amount</label>
+          <input
+            id="amount"
+            type="number"
+            min="1"
+            value={amount}
+            onChange={amountInputHandler}
+          />
+          <button type="submit">Add</button>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default MenuItem;

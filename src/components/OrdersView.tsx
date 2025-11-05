@@ -1,20 +1,23 @@
-import React, {useEffect, useState} from 'react';
+import { useEffect, useState } from "react";
 import Navigation from "./Navigation";
 import {Loader} from "./Loader";
-
 import './OrdersView.css';
-const OrdersView = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [ordersData, setOrdersData] = useState([]);
+import {API, authFetch} from "../api/auth";
+
+type OrderRow = any[]; // [id, table, customers, ..., total]
+type OrdersResponse = { orders?: OrderRow[] };
+
+export default function OrdersView() {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [ordersData, setOrdersData] = useState<OrdersResponse>({});
 
   useEffect(() => {
     setIsLoading(true);
-    // fetch('https://projekt-pub.onrender.com/report/orders')
-    fetch('http://127.0.0.1:5000/report/orders')
-      .then(response => response.json())
-      .then(r => {
-        setIsLoading(false);
+    authFetch(`${API}/report/orders`)
+      .then((r) => r.json())
+      .then((r: OrdersResponse) => {
         setOrdersData(r);
+        setIsLoading(false);
       });
   }, []);
 
@@ -52,5 +55,3 @@ const OrdersView = () => {
     </>
   );
 }
-
-export default OrdersView;
