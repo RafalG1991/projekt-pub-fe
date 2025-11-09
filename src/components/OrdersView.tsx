@@ -4,8 +4,17 @@ import {Loader} from "./Loader";
 import './OrdersView.css';
 import {API, authFetch} from "../api/auth";
 
-type OrderRow = any[]; // [id, table, customers, ..., total]
-type OrdersResponse = { orders?: OrderRow[] };
+type OrderItem = {
+  items: string,
+  order_id: number,
+  order_time: string,
+  status: "OPEN" | "CLOSED",
+  table_id: number,
+  total: number,
+  customers_number: number,
+  employee: string,
+}
+type OrdersResponse = { orders?: OrderItem[] };
 
 export default function OrdersView() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -30,22 +39,26 @@ export default function OrdersView() {
           <th>Order ID</th>
           <th>Table Number</th>
           <th>Number of Customers</th>
+          <th>Order Date</th>
           <th>Ordered Items</th>
+          <th>Employee</th>
           <th>Bill</th>
           <th>Order Status</th>
         </tr>
         </thead>
         <tbody>
         {ordersData.orders?.map((order) => (
-          <tr key={order[0]}>
-            <td data-label="Order ID">{order[0]}</td>
-            <td data-label="Table Number">{order[1]}</td>
-            <td data-label="Number of Customers">{order[2]}</td>
-            <td data-label="Ordered Items">{order[5]}</td>
-            <td data-label="Bill">${order[4]}</td>
+          <tr key={order.order_id}>
+            <td data-label="Order ID">{order.order_id}</td>
+            <td data-label="Table Number">{order.table_id}</td>
+            <td data-label="Number of Customers">{order.customers_number}</td>
+            <td data-label="Order Date">{new Date(order.order_time).toLocaleString()}</td>
+            <td data-label="Ordered Items">{order.items}</td>
+            <td data-label="Employee">{order.employee}</td>
+            <td data-label="Bill">${order.total}</td>
             <td data-label="Order Status">
-                            <span className={`order-status ${order[3].toLowerCase()}`}>
-                                {order[3]}
+                            <span className={`order-status ${order.status.toLowerCase()}`}>
+                                {order.status}
                             </span>
             </td>
           </tr>
