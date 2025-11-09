@@ -1,0 +1,32 @@
+.button-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: darkred;
+}
+
+.recheck-button {
+    margin: 5px;
+    padding: 15px;
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+    background-color: darkred;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.recheck-button:hover {
+    background-color: #490101;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 850px) {
+    .recheck-button {
+        margin: 3px;
+        padding: 10px;
+        font-size: 16px;
+    }
+}

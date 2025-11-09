@@ -5,6 +5,8 @@ import { Loader } from "./Loader";
 import {toast, ToastContainer} from "react-toastify";
 import {API, authFetch} from "../api/auth";
 
+import './Supplies.css';
+
 export type Supply = {
   ingredient_id: number,
   ingredient_name: string,
@@ -51,19 +53,22 @@ const Supplies = () => {
       {isLoading ? (
         <Loader />
       ) : (
-        <div className="menu-wrapper">
-          <div>
-            <button type="button" className="table-button show-order-button" onClick={() => {
+        <>
+          <div className="button-wrapper">
+            <button type="button" className="recheck-button" onClick={() => {
               recheck()
             }
-            }>Check supplies</button>
+            }>Check supplies
+            </button>
           </div>
-          {suppliesData.inventory?.map((item) => (
-            <SupplyItem key={item.ingredient_id} item={item} setReload={setReload} />
-          ))}
-        </div>
+          <div className="menu-wrapper">
+            {suppliesData.inventory?.map((item) => (
+              <SupplyItem key={item.ingredient_id} item={item} setReload={setReload}/>
+            ))}
+          </div>
+        </>
       )}
-      <ToastContainer />
+      <ToastContainer/>
     </>
   );
 };
