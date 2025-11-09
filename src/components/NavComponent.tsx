@@ -13,8 +13,10 @@ const NavComponent = () => {
           <NavLink to="/menu">Menu</NavLink>
           <NavLink to="/orders">Orders</NavLink>
           {user?.role === "admin" && <NavLink to="/supplies">Supplies</NavLink>}
-          <span>{user.name} ({user.role})</span>
-          <button onClick={() => logout()}>Logout</button>
+          <div className="user-wrapper">
+            <span>{user.name} ({user.role})</span>
+            <button onClick={() => logout()}>Logout</button>
+          </div>
         </>
       ) : (
         <>

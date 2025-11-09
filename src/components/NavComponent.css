@@ -18,6 +18,45 @@ a {
     transition: 0.3s;
 }
 
+.user-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: darkred;
+    border-radius: 20px;
+}
+
+.user-wrapper button {
+    padding:0 20px;
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+    background-color: darkred;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.user-wrapper button:hover {
+    background-color: #490101;
+    cursor: pointer;
+}
+
+span {
+    font-size: 15px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    color: white;
+}
+
+span:hover {
+    cursor: default;
+}
+
 a:hover {
     background-color: #490101;
     cursor: pointer;
@@ -41,5 +80,14 @@ a:hover {
         font-size: 16px;
         border-radius: 20px;
         transition: 0.3s;
+    }
+
+    .user-wrapper button {
+        font-size: 16px;
+        border-radius: 20px;
+    }
+
+    span {
+        font-size: 12px;
     }
 }
