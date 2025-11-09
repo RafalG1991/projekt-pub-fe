@@ -46,7 +46,8 @@
 }
 
 .item-order form input {
-    width: 30%;
+    width: 40px;
+    height: 30px;
 }
 
 .item-order form label {
