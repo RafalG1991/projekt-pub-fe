@@ -15,9 +15,16 @@ import "./index.css";
 import Activate from "./components/Activate";
 
 const router = createBrowserRouter([
-  { path: "/login", element: <Login />, errorElement: <ErrorPage /> },
-  { path: "/register", element: <Register />, errorElement: <ErrorPage /> },
-
+  {
+    path: "/login",
+    element: <Login />,
+    errorElement: <ErrorPage />
+  },
+  {
+    path: "/register",
+    element: <Register />,
+    errorElement: <ErrorPage />
+  },
   {
     path: "/",
     element: (

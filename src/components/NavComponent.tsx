@@ -3,14 +3,25 @@ import "./NavComponent.css";
 import { useAuth } from "../auth/AuthContext";
 
 const NavComponent = () => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
 
   return (
     <div className="navcomp-wrapper">
-      <NavLink to="/">Tables</NavLink>
-      <NavLink to="/menu">Menu</NavLink>
-      <NavLink to="/orders">Orders</NavLink>
-      {user?.role === "admin" && <NavLink to="/supplies">Supplies</NavLink>}
+      {user ? (
+        <>
+          <NavLink to="/">Tables</NavLink>
+          <NavLink to="/menu">Menu</NavLink>
+          <NavLink to="/orders">Orders</NavLink>
+          {user?.role === "admin" && <NavLink to="/supplies">Supplies</NavLink>}
+          <span>{user.name} ({user.role})</span>
+          <button onClick={() => logout()}>Logout</button>
+        </>
+      ) : (
+        <>
+          <a href="/login">Log in</a>
+          <a href="/register">Register</a>
+        </>
+      )}
     </div>
   );
 };

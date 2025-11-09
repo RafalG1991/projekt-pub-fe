@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { useAuth } from "../auth/AuthContext";
 import {resendActivation} from "../api/auth";
+import { useNavigate } from "react-router-dom";
+import Navigation from "./Navigation";
 
 export default function Login() {
+  const navigate = useNavigate();
   const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
@@ -20,6 +23,7 @@ export default function Login() {
     try {
       await login(email, pass);
       setSubmitting(false);
+      navigate("/");
     } catch (e: any) {
       setSubmitting(false);
       let data;
@@ -53,22 +57,25 @@ export default function Login() {
   };
 
   return (
-    <form onSubmit={onSubmit} style={{ display: "grid", gap: 8, maxWidth: 360 }}>
-      <h2>Log in</h2>
-      <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="email" />
-      <input value={pass} onChange={(e) => setPass(e.target.value)} placeholder="password" type="password" />
-      <button type="submit" disabled={submitting}>{submitting ? "Logging in..." : "Log in"}</button>
+    <>
+      <Navigation/>
+      <form onSubmit={onSubmit} style={{display: "grid", gap: 8, maxWidth: 360}}>
+        <h2>Log in</h2>
+        <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="email"/>
+        <input value={pass} onChange={(e) => setPass(e.target.value)} placeholder="password" type="password"/>
+        <button type="submit" disabled={submitting}>{submitting ? "Logging in..." : "Log in"}</button>
 
-      {inactive && (
-        <div>
-          <button type="button" onClick={onResend} disabled={!email}>
-            Resend activation link
-          </button>
-          {!email && <small>Podaj e-mail, aby wysłać link.</small>}
-        </div>
-      )}
+        {inactive && (
+          <div>
+            <button type="button" onClick={onResend} disabled={!email}>
+              Resend activation link
+            </button>
+            {!email && <small>Podaj e-mail, aby wysłać link.</small>}
+          </div>
+        )}
 
-      {err && <small style={{ color: "crimson" }}>{err}</small>}
-    </form>
+        {err && <small style={{color: "crimson"}}>{err}</small>}
+      </form>
+    </>
   );
 }

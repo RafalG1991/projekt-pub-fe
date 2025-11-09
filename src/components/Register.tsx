@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useAuth } from "../auth/AuthContext";
 import {toast, ToastContainer} from "react-toastify";
+import Navigation from "./Navigation";
 
 export default function Register() {
   const { register } = useAuth();
@@ -22,6 +23,7 @@ export default function Register() {
 
   return (
     <div>
+      <Navigation />
       <form onSubmit={onSubmit} style={{display: "grid", gap: 8, maxWidth: 360}}>
         <h2>Register</h2>
         <input value={name} onChange={(e) => setName(e.target.value)} placeholder="name"/>

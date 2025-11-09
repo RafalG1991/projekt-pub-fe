@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useMemo, useState } from "react";
 import { auth, type User } from "../api/auth";
+import Login from "../components/Login";
 
 type AuthCtx = {
   user: User | null;
@@ -43,7 +44,7 @@ export const useAuth = () => {
 
 export function RequireAuth({ children }: { children: JSX.Element }) {
   const { user } = useAuth();
-  if (!user) return <div style={{ padding: 24 }}>Please log in.</div>;
+  if (!user) return <Login />;
   return children;
 }
 
