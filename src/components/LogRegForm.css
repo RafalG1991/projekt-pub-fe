@@ -5,7 +5,7 @@
     align-items: center;
 }
 
-form {
+.form-wrapper form {
     width: 50%;
     display: flex;
     flex-direction: column;
@@ -16,7 +16,7 @@ form {
     padding: 20px;
 }
 
-h2 {
+.form-wrapper h2 {
     margin: 5px;
     text-align: center;
     color: white;
@@ -26,7 +26,7 @@ h2 {
     text-transform: uppercase;
 }
 
-input {
+.form-wrapper input {
     margin: 10px;
     padding: 5px;
     width: 80%;
@@ -56,12 +56,12 @@ input {
     background-color: #490101;
 }
 
-button:hover {
+.form-wrapper button:hover {
     background-color: #490101;
     cursor: pointer;
 }
 
-button:disabled {
+.form-wrapper button:disabled {
     cursor: not-allowed;
 }
 
@@ -70,16 +70,16 @@ button:disabled {
         height: 85vh;
     }
 
-    form {
+    .form-wrapper form {
         width: 80%;
     }
 
-    h2 {
+    .form-wrapper h2 {
         margin: 5px;
         font-size: 20px;
     }
 
-    input {
+    .form-wrapper input {
         margin: 10px;
         padding: 5px;
         width: 90%;
