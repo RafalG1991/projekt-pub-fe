@@ -17,7 +17,7 @@ const CartIcon = (props: Props) => {
         alt="Shopping cart"
       />
       <p>
-        Your cart <span>{props.itemsCounter}</span>
+        <span>{props.itemsCounter}</span>
       </p>
     </div>
   );

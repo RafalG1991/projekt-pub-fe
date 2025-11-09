@@ -1,8 +1,11 @@
 .cart-icon {
+    height: 40%;
+    width: 10vw;
+    min-width: 100px;
     display: flex;
     flex-direction: row;
-    justify-self: flex-end;
     align-items: center;
+    justify-content: center;
     background-color: #f69292;
     padding: 0 20px;
     border-radius: 20px;
@@ -22,13 +25,17 @@
 }
 
 .cart-icon p {
-    margin: 10px 0;
-    font-size: 24px;
+    display: flex;
+    margin: 5px 0;
     color: white;
 }
 
 .cart-icon p span {
-    padding: 6px 16px;
+    height: 40px;
+    width: 40px;
+    font-size: 20px;
+    text-align: center;
+    padding: 4px 12px;
     background-color: darkred;
     border-radius: 50%;
 }
