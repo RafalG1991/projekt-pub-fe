@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navigation from "./Navigation";
 import SupplyItem from "./SupplyItem";
 import { Loader } from "./Loader";
-import { ToastContainer } from "react-toastify";
+import {toast, ToastContainer} from "react-toastify";
 import {API, authFetch} from "../api/auth";
 
 export type Supply = {
@@ -31,7 +31,17 @@ const Supplies = () => {
       .then(response => response.json())
       .then(r => {
         setIsLoading(false);
-        console.log(r);
+        if (r.notified.ok) {
+          if(r.notified.notified === 0) {
+            toast.success("Inventory check complete: No restocking necessary.", { position: "bottom-center" });
+          } else {
+            toast.success(`Restocking required (items: ${r.notified.notified}). Report emailed.`, { position: "bottom-center" });
+          }
+        } else {
+          toast.error("Ingredients stocks cannot be checked now! Try again later!", {
+            position: "bottom-center",
+          });
+        }
       });
     }
 
