@@ -1,12 +1,16 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navigation from "./Navigation";
 import SupplyItem from "./SupplyItem";
 import { Loader } from "./Loader";
 import { ToastContainer } from "react-toastify";
 import {API, authFetch} from "../api/auth";
 
-type SuppliesRow = any[]; // np. [id, name, qty, unit]
-type SuppliesResponse = { inv?: SuppliesRow[] };
+export type Supply = {
+  ingredient_id: number,
+  ingredient_name: string,
+  stock_quantity: number,
+}
+type SuppliesResponse = { inventory?: Supply[] };
 
 const Supplies = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -21,6 +25,16 @@ const Supplies = () => {
       .finally(() => setIsLoading(false));
   }, [reload]);
 
+  const recheck = async () => {
+    setIsLoading(true);
+    authFetch(`${API}/report/recheck`)
+      .then(response => response.json())
+      .then(r => {
+        setIsLoading(false);
+        console.log(r);
+      });
+    }
+
   return (
     <>
       <Navigation />
@@ -28,8 +42,14 @@ const Supplies = () => {
         <Loader />
       ) : (
         <div className="menu-wrapper">
-          {suppliesData.inv?.map((item: any[]) => (
-            <SupplyItem key={item[0]} item={item} setReload={setReload} />
+          <div>
+            <button type="button" className="table-button show-order-button" onClick={() => {
+              recheck()
+            }
+            }>Check supplies</button>
+          </div>
+          {suppliesData.inventory?.map((item) => (
+            <SupplyItem key={item.ingredient_id} item={item} setReload={setReload} />
           ))}
         </div>
       )}

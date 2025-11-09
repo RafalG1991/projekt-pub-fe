@@ -2,9 +2,10 @@ import {useState} from "react";
 import {Loader} from "./Loader";
 import './SupplyItem.css';
 import {API, authFetch} from "../api/auth";
+import {Supply} from "./Supplies";
 
 type Props = {
-  item: any[]; // [id, name, qty, ...]
+  item: Supply;
   setReload: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
@@ -26,7 +27,7 @@ const SupplyItem = (props: Props) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        id: props.item[0],
+        id: props.item.ingredient_id,
         quantity: amount,
       }),
     });
@@ -38,11 +39,11 @@ const SupplyItem = (props: Props) => {
 
   return (
     <div className="supply-item-wrapper">
-      <img src={process.env.PUBLIC_URL + `/${props.item[1].toLowerCase()}.jpg`}
-           alt={props.item[1]}/>
+      <img src={process.env.PUBLIC_URL + `/${props.item.ingredient_name.toLowerCase()}.jpg`}
+           alt={props.item.ingredient_name}/>
       <div className="supply-item-description">
-        <p>{props.item[1]}</p>
-        <p>In stock: {props.item[2]}</p>
+        <p>{props.item.ingredient_name}</p>
+        <p>In stock: {props.item.stock_quantity}</p>
       </div>
       {isLoading ? <Loader/> :
         <div className="supply-item-order">
