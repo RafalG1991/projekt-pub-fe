@@ -3,6 +3,7 @@ import './Tables.css';
 import OrderModal from "./OrderModal";
 import {Loader} from "./Loader";
 import {API, authFetch} from "../api/auth";
+import {useAuth} from "../auth/AuthContext";
 
 type TableRow = {
   table_id: number;
@@ -21,6 +22,7 @@ const Tables = () => {
   const [order, setOrder] = useState([]);
   const [orderToggle, setOrderToggle] = useState(false);
   const [amount, setAmount] = useState(1);
+  const { user } = useAuth();
 
   const amountInputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAmount(Number(event.target.value));
@@ -38,7 +40,7 @@ const Tables = () => {
         setTablesData(r);
       });
   }, [resStatus]);
-  const openOrder = async (status: string, tableNumber: number, customersNumber: number) => {
+  const openOrder = async (status: string, tableNumber: number, customersNumber: number, employeeId: number) => {
     if(status === 'FREE') {
       setIsLoading(true);
       const res = await authFetch(`${API}/order/open`, {
@@ -50,6 +52,7 @@ const Tables = () => {
         body: JSON.stringify({
           tableNumber,
           customersNumber,
+          employeeId,
         }),
       });
       setIsLoading(false);
@@ -107,7 +110,7 @@ const Tables = () => {
         if (amount <= Number(table.capacity)) {
           return (
             <div key={table.table_id} className={`table-card ${table.table_status}`}
-                 onClick={() => openOrder(table.table_status, table.table_id, amount)}>
+                 onClick={() => openOrder(table.table_status, table.table_id, amount, user!.id)}>
               <div className="table-details">
                 <h2 className="table-number">Table {table.table_number}</h2>
                 <p className="table-capacity">Capacity: {table.capacity} people</p>
