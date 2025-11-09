@@ -17,6 +17,22 @@ export default function Register() {
       await register(name, email, pass);
       toast.success("Account created. Check your e-mail for activation link.", { position: "bottom-center" });
     } catch (e: any) {
+      let data;
+
+      const msg = e.message;
+
+      try {
+        data = JSON.parse(msg);
+      } catch {
+        data = { error: "unknown", ok: false };
+      }
+
+      if (data.error === "email_in_use" && !data.ok) {
+        toast.error("Registration failed! E-mail in use!", {
+          position: "bottom-center",
+        });
+        return;
+      }
       toast.error("Registration failed! Try again later!", {
         position: "bottom-center",
       });
