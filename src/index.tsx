@@ -12,6 +12,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 
 import "./index.css";
+import Activate from "./components/Activate";
 
 const router = createBrowserRouter([
   { path: "/login", element: <Login />, errorElement: <ErrorPage /> },
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
       </RequireRole>
     ),
     errorElement: <ErrorPage />,
+  },
+  {
+    path: "/activate",
+    element: <Activate />
   },
 ]);
 

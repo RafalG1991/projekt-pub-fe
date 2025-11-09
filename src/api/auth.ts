@@ -121,5 +121,16 @@ export async function authFetch(input: RequestInfo | URL, init: RequestInit = {}
   return res;
 }
 
+export async function resendActivation(email: string) {
+  const res = await fetch(`${API}/auth/resend-activation`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email }),
+  });
+  const isJson = res.headers.get("content-type")?.includes("application/json");
+  const data = isJson ? await res.json() : await res.text();
+  if (!res.ok) throw new Error(typeof data === "string" ? data : JSON.stringify(data));
+  return data; // { ok: true, message: "activation_sent" }
+}
 
 export { API };
