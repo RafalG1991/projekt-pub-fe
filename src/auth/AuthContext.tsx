@@ -56,7 +56,7 @@ export function RequireRole({
   children: JSX.Element;
 }) {
   const { user } = useAuth();
-  if (!user) return <div style={{ padding: 24 }}>Please log in.</div>;
+  if (!user) return <Login />;
   if (!roles.includes(user.role)) return <div style={{ padding: 24 }}>Forbidden.</div>;
   return children;
 }

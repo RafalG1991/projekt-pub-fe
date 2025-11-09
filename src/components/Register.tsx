@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { useAuth } from "../auth/AuthContext";
 import {toast, ToastContainer} from "react-toastify";
 import Navigation from "./Navigation";
+import "./LogRegForm.css";
 
 export default function Register() {
   const { register } = useAuth();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
+  const [passTest, setPassTest] = useState(true);
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -24,15 +26,28 @@ export default function Register() {
   return (
     <div>
       <Navigation />
-      <form onSubmit={onSubmit} style={{display: "grid", gap: 8, maxWidth: 360}}>
-        <h2>Register</h2>
-        <input value={name} onChange={(e) => setName(e.target.value)} placeholder="name"/>
-        <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="email"/>
-        <input value={pass} onChange={(e) => setPass(e.target.value)} placeholder="password" type="password"/>
-        <button type="submit">Create account</button>
-      </form>
-      <ToastContainer />
+      <div className="form-wrapper">
+        <form onSubmit={onSubmit}>
+          <h2>Register</h2>
+          <input value={name} onChange={(e) => setName(e.target.value)} placeholder="name" required/>
+          <input value={email} type='email'  onChange={(e) => setEmail(e.target.value)} placeholder="email" required/>
+          <input value={pass} onChange={(e) => {
+            let pass = e.target.value;
+            const reg = /^(?=.*\d)(?=.*[^\w\s]).{8,}$/;
+            const test = reg.test(pass);
+            if (test) {
+              setPass(e.target.value);
+              setPassTest(true);
+            }else{
+              setPass(e.target.value);
+              setPassTest(false);
+            }
+          }} placeholder="password" type="password" required/>
+          {!passTest && <p>Minimum 8 characters, including at least one number and one special character</p>}
+          <button type="submit">Create account</button>
+        </form>
+      </div>
+      <ToastContainer/>
     </div>
-
   );
 }

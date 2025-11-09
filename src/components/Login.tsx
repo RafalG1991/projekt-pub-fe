@@ -4,6 +4,8 @@ import {resendActivation} from "../api/auth";
 import { useNavigate } from "react-router-dom";
 import Navigation from "./Navigation";
 
+import "./LogRegForm.css";
+
 export default function Login() {
   const navigate = useNavigate();
   const { login } = useAuth();
@@ -50,32 +52,34 @@ export default function Login() {
     setErr("");
     try {
       const r = await resendActivation(email);
-      setErr("Wysłaliśmy ponownie link aktywacyjny. Sprawdź skrzynkę.");
+      setErr("Activation link sent. Check your e-mail!");
     } catch (e: any) {
-      setErr("Nie udało się wysłać linku. Spróbuj ponownie za chwilę.");
+      setErr("Activation link cannot be sent now! Try again later!");
     }
   };
 
   return (
     <>
       <Navigation/>
-      <form onSubmit={onSubmit} style={{display: "grid", gap: 8, maxWidth: 360}}>
-        <h2>Log in</h2>
-        <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="email"/>
-        <input value={pass} onChange={(e) => setPass(e.target.value)} placeholder="password" type="password"/>
-        <button type="submit" disabled={submitting}>{submitting ? "Logging in..." : "Log in"}</button>
+      <div className="form-wrapper">
+        <form onSubmit={onSubmit}>
+          <h2>Log in</h2>
+          <input value={email} type='email' onChange={(e) => setEmail(e.target.value)} placeholder="email" required/>
+          <input value={pass} onChange={(e) => setPass(e.target.value)} placeholder="password" type="password" required/>
+          <button type="submit" disabled={submitting}>{submitting ? "Logging in..." : "Log in"}</button>
 
-        {inactive && (
-          <div>
-            <button type="button" onClick={onResend} disabled={!email}>
-              Resend activation link
-            </button>
-            {!email && <small>Podaj e-mail, aby wysłać link.</small>}
-          </div>
-        )}
+          {inactive && (
+            <div>
+              <button type="button" onClick={onResend} disabled={!email}>
+                Resend activation link
+              </button>
+              {!email && <small>Enter e-mail address to resend activation code</small>}
+            </div>
+          )}
 
-        {err && <small style={{color: "crimson"}}>{err}</small>}
-      </form>
+          {err && <small style={{color: "crimson"}}>{err}</small>}
+        </form>
+      </div>
     </>
   );
 }
