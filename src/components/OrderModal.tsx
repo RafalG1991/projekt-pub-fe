@@ -8,7 +8,7 @@ type Drink = {
   count: number;
 };
 
-type OrderItem = {
+export type OrderItem = {
   customers_number: number,
   items: string | null,
   order_id: number,

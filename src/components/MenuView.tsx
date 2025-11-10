@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import Header from "./Header";
 import Menu from "./Menu";
 import BasketModal from "./BasketModal";
 import {API, authFetch} from "../api/auth";
+import {OrderItem} from "./OrderModal";
+
+import './MenuView.css';
 
 export type ApiItem = {
   description: string,
@@ -16,8 +19,10 @@ type DrinkItem = { id: number; name: string; price: number; description?: string
 export type BasketItem = { id: number; name: string; price: number; amount: number };
 
 export type ApiResponse = { menu: ApiItem[] };
+export type ApiOrderResponse = { order: OrderItem[] | [] };
 
 export default function MenuView() {
+  const navigate = useNavigate();
   const { orderId } = useParams<{ orderId: string }>();
 
   const [menuList, setMenuList] = useState<DrinkItem[]>([]);
@@ -25,11 +30,12 @@ export default function MenuView() {
   const [itemsCounter, setItemsCounter] = useState<number>(0);
   const [basketToggle, setBasketToggle] = useState<boolean>(false);
 
+  const [order, setOrder] = useState<OrderItem[] | []>([]);
+
   useEffect(() => {
     authFetch(`${API}/order/menu`)
       .then((r) => r.json())
       .then((r: ApiResponse) => {
-        console.log(r)
         const menu: DrinkItem[] = r.menu.map((item: ApiItem) => ({
           id: item.drink_id,
           name: item.drink_name,
@@ -38,7 +44,19 @@ export default function MenuView() {
         }));
         setMenuList(menu);
       });
-  }, []);
+    authFetch(`${API}/order/show/${orderId}`)
+      .then((r) => r.json())
+      .then((r: ApiOrderResponse) => {
+        setOrder(r.order);
+      });
+    if (order.length === 0) {
+      const timer = setTimeout(() => {
+        navigate("/");
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [orderId, navigate, order.length]);
 
   const toggleBasket = () => setBasketToggle((v) => !v);
 
@@ -89,20 +107,22 @@ export default function MenuView() {
   };
 
   return (
-    <>
-      <Header basket={basket} itemsCounter={itemsCounter} toggleBasket={toggleBasket} />
-      <Menu items={menuList} basket={basket} add={addItemToBasket} />
-      {basketToggle && orderId && (
-        <BasketModal
-          orderId={orderId} // string z URL
-          basket={basket}
-          addAmount={addAmount}
-          removeAmount={removeAmount}
-          clearBasket={clearBasket}
-          toggleBasket={toggleBasket}
-        />
-      )}
-      <ToastContainer />
-    </>
+    order.length > 0 ? <>
+        <Header basket={basket} itemsCounter={itemsCounter} toggleBasket={toggleBasket} />
+        <Menu items={menuList} basket={basket} add={addItemToBasket} />
+        {basketToggle && orderId && (
+          <BasketModal
+            orderId={orderId} // string z URL
+            basket={basket}
+            addAmount={addAmount}
+            removeAmount={removeAmount}
+            clearBasket={clearBasket}
+            toggleBasket={toggleBasket}
+          />
+        )}
+        <ToastContainer />
+      </> : <div className="error-wrapper">
+      <p className="typing">Order doesn't exist, redirecting to main page ...</p>
+    </div>
   );
 }
