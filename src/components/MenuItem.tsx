@@ -17,7 +17,6 @@ type Props = {
 
 const MenuItem = (props: Props) => {
   const [amount, setAmount] = useState<number>(0);
-  console.log(props)
 
   const amountInputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAmount(Number(event.target.value));

@@ -26,8 +26,10 @@
 
 .item-description {
     display: flex;
-    width: 50%;
+    width: 100%;
+    padding: 10px;
     flex-direction: column;
+    justify-content: space-between;
 }
 
 .item-order {
@@ -89,7 +91,7 @@
     color: chocolate;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1050px) {
     .menu-item-wrapper {
         flex-direction: column;
         width: calc(100% - 20px);
