@@ -104,6 +104,32 @@ const Tables = () => {
     }
   }
 
+  const confirmOrder = async (status: string, tableId: number, employeeId: number) => {
+    if (status === 'PENDING') {
+      setIsLoading(true);
+      const res = await authFetch(`${API}/order/confirm`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ tableId, employeeId }),
+      });
+      setIsLoading(false);
+      setResStatus(res);
+    }
+  };
+
+  const rejectOrder = async (status: string, tableId: number, employeeId: number) => {
+    if (status === 'PENDING') {
+      setIsLoading(true);
+      const res = await authFetch(`${API}/order/reject`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ tableId, employeeId }),
+      });
+      setIsLoading(false);
+      setResStatus(res);
+    }
+  };
+
   if (isLoading) {
     return <Loader />
   }
@@ -158,6 +184,30 @@ const Tables = () => {
                 {table.table_status === 'BUSY' ?
                   <button type="button" className="table-button close-order-button"
                           onClick={() => closeOrder(table.table_status, table.table_id)}>Close order</button> : ''}
+                {table.table_status === 'PENDING' && (
+                  <>
+                    <button
+                      type="button"
+                      className="table-button show-order-button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        confirmOrder(table.table_status, table.table_id, user!.id);
+                      }}
+                    >
+                      Accept
+                    </button>
+                    <button
+                      type="button"
+                      className="table-button close-order-button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        rejectOrder(table.table_status, table.table_id, user!.id);
+                      }}
+                    >
+                      Reject
+                    </button>
+                  </>
+                )}
               </div>
             </div>
           )

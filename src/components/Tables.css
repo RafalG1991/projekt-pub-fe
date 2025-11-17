@@ -71,6 +71,10 @@
     background-color: #28a745;
 }
 
+.table-card.PENDING {
+    background-color: #ff9800;
+}
+
 .reserve-message {
     position: absolute;
     inset: 0;
