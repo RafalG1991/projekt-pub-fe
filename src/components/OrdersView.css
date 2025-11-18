@@ -43,6 +43,16 @@
     color: white;
 }
 
+.order-status.pending {
+    background-color: #ff9e12;
+    color: white;
+}
+
+.order-status.rejected {
+    background-color: #000000;
+    color: white;
+}
+
 @media screen and (max-width: 950px) {
     table {
         border: 0;

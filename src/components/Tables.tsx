@@ -231,7 +231,7 @@ const Tables = () => {
                 <p className="table-status">{table.table_status}</p>
                 {signals[table.table_id] && (
                   <div
-                    className="signal-badge"
+                    className={`signal-badge ${signals[table.table_id]?.toLowerCase()}`}
                     onClick={(e) => {
                       e.stopPropagation(); // żeby nie odpalić openOrder
                       setSignals(prev => {

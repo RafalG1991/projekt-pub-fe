@@ -93,13 +93,55 @@
 
 .signal-badge {
     margin-top: 8px;
-    display: inline-block;
-    padding: 4px 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
     border-radius: 999px;
-    background-color: #ff9800;
+    font-size: 16px;
+    font-weight: 600;
     color: #fff;
-    font-size: 12px;
     cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    animation: signal-pulse 1.6s infinite;
+    transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, opacity 0.15s ease-out;
+    opacity: 0.95;
+}
+
+/* różne kolory w zależności od typu (na bazie klasy dodanej w TS) */
+.signal-badge.waiter {
+    background: linear-gradient(135deg, #ff9800, #ffb74d);
+}
+
+.signal-badge.cutlery {
+    background: linear-gradient(135deg, #03a9f4, #4fc3f7);
+}
+
+.signal-badge.cleaning {
+    background: linear-gradient(135deg, #9c27b0, #ce93d8);
+}
+
+/* efekt na hover */
+.signal-badge:hover {
+    transform: translateY(-1px) scale(1.03);
+    box-shadow: 0 0 14px rgba(255, 255, 255, 0.4);
+    opacity: 1;
+}
+
+/* delikatna animacja „pulse” */
+@keyframes signal-pulse {
+    0% {
+        transform: translateY(0) scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+    }
+    50% {
+        transform: translateY(-1px) scale(1.04);
+        box-shadow: 0 0 12px 4px rgba(255, 255, 255, 0.25);
+    }
+    100% {
+        transform: translateY(0) scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
 }
 
 .table-card.FREE:hover {
