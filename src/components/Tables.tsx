@@ -4,6 +4,8 @@ import OrderModal from "./OrderModal";
 import {Loader} from "./Loader";
 import {API, authFetch} from "../api/auth";
 import {useAuth} from "../auth/AuthContext";
+import { io, Socket } from "socket.io-client";
+
 
 type TableRow = {
   table_id: number;
@@ -55,6 +57,41 @@ const Tables = () => {
         setTablesData(r);
       });
   }, [resStatus, activeLounge]);
+
+  useEffect(() => {
+    const socket: Socket = io(API, {
+      transports: ["polling"],   // 👈 tylko long-polling, bez websocket
+    });
+
+    socket.on("connect", () => {
+      console.log("Socket connected", socket.id);
+    });
+
+    socket.on("disconnect", () => {
+      console.log("Socket disconnected");
+    });
+
+    socket.on("table_updated", (payload: any) => {
+      console.log("table_updated", payload);
+
+      setTablesData(prev => {
+        if (!prev || !prev.tables) return prev;
+
+        return {
+          tables: prev.tables.map(t =>
+            t.table_id === payload.table_id
+              ? { ...t, table_status: payload.table_status as any }
+              : t
+          ),
+        };
+      });
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, [activeLounge]);
+
   const openOrder = async (status: string, tableNumber: number, customersNumber: number, employeeId: number) => {
     if(status === 'FREE') {
       setIsLoading(true);
