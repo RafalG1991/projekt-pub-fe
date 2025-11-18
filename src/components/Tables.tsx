@@ -26,6 +26,7 @@ const Tables = () => {
   const [order, setOrder] = useState([]);
   const [orderToggle, setOrderToggle] = useState(false);
   const [amount, setAmount] = useState(1);
+  const [signals, setSignals] = useState<Record<number, string | null>>({});
   const { user } = useAuth();
 
   const [lounges, setLounges] = useState<Lounge[]>([]);
@@ -85,6 +86,27 @@ const Tables = () => {
           ),
         };
       });
+    });
+
+    socket.on("table_signal", (payload: any) => {
+      console.log("table_signal", payload);
+      const id = payload.table_id as number;
+      const type = payload.type as string;
+
+      setSignals(prev => ({
+        ...prev,
+        [id]: type,   // np. "WAITER"
+      }));
+
+      // opcjonalnie auto-clear po np. 60s
+      setTimeout(() => {
+        setSignals(prev => {
+          if (!prev[id]) return prev;
+          const copy = { ...prev };
+          delete copy[id];
+          return copy;
+        });
+      }, 60000);
     });
 
     return () => {
@@ -207,6 +229,23 @@ const Tables = () => {
                 <h2 className="table-number">Table {table.table_number}</h2>
                 <p className="table-capacity">Capacity: {table.capacity} people</p>
                 <p className="table-status">{table.table_status}</p>
+                {signals[table.table_id] && (
+                  <div
+                    className="signal-badge"
+                    onClick={(e) => {
+                      e.stopPropagation(); // żeby nie odpalić openOrder
+                      setSignals(prev => {
+                        const copy = { ...prev };
+                        delete copy[table.table_id];
+                        return copy;
+                      });
+                    }}
+                  >
+                    {signals[table.table_id] === "WAITER" && "🔔 Call waiter"}
+                    {signals[table.table_id] === "CUTLERY" && "🍴 Need cutlery"}
+                    {signals[table.table_id] === "CLEANING" && "🧹 Cleaning service"}
+                  </div>
+                )}
                 {table.table_status === 'FREE' && (
                   <div className="reserve-message">Click to reserve</div>
                 )}
