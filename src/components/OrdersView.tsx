@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Navigation from "./Navigation";
+import OrdersAnalytics from "./OrdersAnalytics";
 import {Loader} from "./Loader";
 import './OrdersView.css';
 import {API, authFetch} from "../api/auth";
@@ -33,6 +34,7 @@ export default function OrdersView() {
   return (
     <>
       <Navigation/>
+      <OrdersAnalytics />
       {isLoading ? <Loader /> : <table className="orders-table">
         <thead>
         <tr>
