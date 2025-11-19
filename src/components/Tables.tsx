@@ -217,7 +217,7 @@ const Tables = () => {
 
         <div className="guest-counter">
           <label htmlFor="amount">Number of guests: </label>
-          <input id="amount" type="number" min="1" max="4" value={amount} onChange={amountInputHandler}/>
+          <input id="amount" type="number" min="1" max="8" value={amount} onChange={amountInputHandler}/>
         </div>
       </div>
       {tablesData.tables
