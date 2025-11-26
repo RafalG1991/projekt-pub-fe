@@ -80,10 +80,9 @@ export default function Activate() {
 
         {status === "idle" && (
           <>
-            <h1 className="activate-title">Aktywujemy Twoje konto…</h1>
+            <h1 className="activate-title">Activating your account...</h1>
             <p className="activate-text">
-              Trwa weryfikacja linku aktywacyjnego. Za chwilę wszystko będzie
-              gotowe.
+              The verification of the activation link is in progress. Everything will be ready in a moment.
             </p>
             <div className="activate-spinner" />
           </>
@@ -91,22 +90,21 @@ export default function Activate() {
 
         {status === "ok" && (
           <>
-            <h1 className="activate-title success">Konto aktywne!</h1>
+            <h1 className="activate-title success">Account activated!</h1>
             <p className="activate-text">
-              Twoje konto zostało pomyślnie aktywowane. Możesz zalogować się do
-              panelu pracownika.
+              Your account has been successfully activated. You can log in to the employee panel.
             </p>
             <button className="activate-btn primary" onClick={goToLogin}>
-              Przejdź do logowania
+              Log in
             </button>
           </>
         )}
 
         {status === "error" && (
           <>
-            <h1 className="activate-title error">Nie udało się aktywować</h1>
+            <h1 className="activate-title error">Activation failed!</h1>
             <p className="activate-text">
-              Link aktywacyjny jest nieprawidłowy lub wygasł.
+              The activation link is invalid or has expired."
               {errorMsg && (
                 <span className="activate-error-detail"> ({errorMsg})</span>
               )}
@@ -144,16 +142,15 @@ function ResendActivation() {
 
   return (
     <div className="activate-resend">
-      <h2>Wyślij nowy link aktywacyjny</h2>
+      <h2>Send a new activation link</h2>
       <p className="activate-text small">
-        Podaj adres e-mail użyty przy rejestracji. Wyślemy świeży link
-        aktywacyjny.
+        Enter the email address used during registration. We will send you a fresh activation link.
       </p>
       <input
         className="activate-input"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        placeholder="Twój e-mail"
+        placeholder="Your e-mail"
         type="email"
       />
       <button
@@ -161,10 +158,10 @@ function ResendActivation() {
         onClick={resend}
         disabled={loading || !email}
       >
-        {loading ? "Wysyłanie..." : "Wyślij link ponownie"}
+        {loading ? "Sending..." : "Send the link again"}
       </button>
-      {msg === "activation_sent" && <p className="activate-msg">Wysłano link aktywacyjny!</p>}
-      {msg === "already_active" && <p className="activate-msg">Konto jest już aktywne! Zaloguj się do aplikacji!</p>}
+      {msg === "activation_sent" && <p className="activate-msg">Activation link sent!</p>}
+      {msg === "already_active" && <p className="activate-msg">The account is already active! Log in to the app!</p>}
     </div>
   );
 }
