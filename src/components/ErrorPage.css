@@ -1,0 +1,86 @@
+/* pełne ciemne tło jak reszta aplikacji */
+.error-page {
+    min-height: 100vh;
+    background-color: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    color: #fff;
+}
+
+/* karta błędu */
+.error-card {
+    width: 100%;
+    max-width: 420px;
+    background: #222;
+    padding: 32px 28px;
+    border-radius: 18px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* ikonka nad kartą */
+.error-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 22px;
+    background: linear-gradient(135deg, #ff5252, #ff7979);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 34px;
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 10px 22px rgba(255, 80, 80, 0.4);
+}
+
+/* tytuł */
+.error-title {
+    margin-top: 40px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #ff6b6b;
+}
+
+/* opis */
+.error-text {
+    margin-top: 8px;
+    color: #ccc;
+    font-size: 15px;
+}
+
+/* detale błędu (mała czcionka, jaśniejszy kolor) */
+.error-details {
+    margin-top: 12px;
+    padding: 10px 14px;
+    background: rgba(255, 80, 80, 0.1);
+    border-left: 3px solid #ff6b6b;
+    border-radius: 8px;
+    color: #ffb3b3;
+    font-size: 13px;
+    word-break: break-word;
+}
+
+/* przycisk */
+.error-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    background-color: #28a745;
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.2s ease;
+    box-shadow: 0 8px 18px rgba(40, 167, 69, 0.4);
+}
+
+.error-btn:hover {
+    background-color: #2fc24f;
+    transform: translateY(-1px);
+    box-shadow: 0 12px 20px rgba(40, 167, 69, 0.6);
+}
