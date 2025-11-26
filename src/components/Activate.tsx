@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {useEffect, useRef, useState} from "react";
 import { useSearchParams } from "react-router-dom";
 import { API } from "../api/auth";
 
@@ -6,8 +6,12 @@ export default function Activate() {
   const [params] = useSearchParams();
   const [status, setStatus] = useState<"idle"|"ok"|"error">("idle");
   const token = params.get("token");
+  const ranRef = useRef(false);
 
   useEffect(() => {
+    if (ranRef.current) return;  // drugi raz w StrictMode -> wyjdź
+    ranRef.current = true;
+
     if (!token) { setStatus("error"); return; }
     fetch(`${API}/auth/activate?token=${encodeURIComponent(token)}`)
       .then(async (res) => {
