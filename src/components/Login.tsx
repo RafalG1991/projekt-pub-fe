@@ -44,6 +44,11 @@ export default function Login() {
         setErr("Your account is inactive! Check your email.");
         return;
       }
+      if (data.error === "invalid_credentials" && !data.ok) {
+        setSubmitting(false);
+        setErr("Login failed — please check your username and password.");
+        return;
+      }
       setErr(e?.message || "Login failed");
     }
   }
@@ -76,7 +81,6 @@ export default function Login() {
               {!email && <small>Enter e-mail address to resend activation code</small>}
             </div>
           )}
-
           {err && <small style={{color: "crimson"}}>{err}</small>}
         </form>
       </div>
