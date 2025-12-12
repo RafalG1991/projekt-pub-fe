@@ -1,4 +1,3 @@
-/* pełny ekran, ciemne tło jak reszta aplikacji */
 .activate-page {
     min-height: 100vh;
     display: flex;
@@ -9,7 +8,6 @@
     color: #fff;
 }
 
-/* karta na środku */
 .activate-card {
     max-width: 420px;
     width: 100%;
@@ -21,7 +19,6 @@
     position: relative;
 }
 
-/* małe „logo” / ikonka */
 .activate-logo {
     width: 64px;
     height: 64px;
@@ -38,7 +35,6 @@
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
 }
 
-/* tytuł */
 .activate-title {
     margin-top: 40px;
     margin-bottom: 12px;
@@ -54,7 +50,6 @@
     color: #ff6b6b;
 }
 
-/* opis */
 .activate-text {
     margin: 0 0 18px;
     font-size: 14px;
@@ -73,7 +68,6 @@
     font-size: 12px;
 }
 
-/* prosty spinner */
 .activate-spinner {
     width: 32px;
     height: 32px;
@@ -90,7 +84,6 @@
     }
 }
 
-/* przyciski */
 .activate-btn {
     display: inline-flex;
     align-items: center;
@@ -135,7 +128,6 @@
     transform: none;
 }
 
-/* pole input */
 .activate-input {
     width: 100%;
     padding: 9px 12px;
@@ -157,7 +149,6 @@
     box-shadow: 0 0 0 1px rgba(40, 167, 69, 0.4);
 }
 
-/* sekcja resend */
 .activate-resend {
     margin-top: 16px;
     padding-top: 14px;

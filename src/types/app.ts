@@ -13,5 +13,5 @@ export type DrinkItem = {
   price: number;
 };
 
-export type OrderRow = any[];     // na razie — backend zwraca krotki/arraye
-export type SuppliesRow = any[];  // jw. (np. [id, name, qty, unit] itp.)
+export type OrderRow = any[];
+export type SuppliesRow = any[];

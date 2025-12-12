@@ -27,7 +27,7 @@ const MenuItem = (props: Props) => {
     if (!amount) return;
 
     props.add({
-      id: Math.random(), // jeśli backend nadaje ID, można to później poprawić
+      id: Math.random(),
       name: props.item.name,
       price: props.item.price,
       amount: Number(amount),

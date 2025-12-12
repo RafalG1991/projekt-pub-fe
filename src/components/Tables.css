@@ -108,7 +108,6 @@
     opacity: 0.95;
 }
 
-/* różne kolory w zależności od typu (na bazie klasy dodanej w TS) */
 .signal-badge.waiter {
     background: linear-gradient(135deg, #ff9800, #ffb74d);
 }
@@ -121,14 +120,12 @@
     background: linear-gradient(135deg, #9c27b0, #ce93d8);
 }
 
-/* efekt na hover */
 .signal-badge:hover {
     transform: translateY(-1px) scale(1.03);
     box-shadow: 0 0 14px rgba(255, 255, 255, 0.4);
     opacity: 1;
 }
 
-/* delikatna animacja „pulse” */
 @keyframes signal-pulse {
     0% {
         transform: translateY(0) scale(1);
@@ -215,7 +212,7 @@
     }
 
     .table-card {
-        flex: 1 1 100%;   /* jedna kolumna na małych ekranach */
+        flex: 1 1 100%;
         min-height: 200px;
     }
 

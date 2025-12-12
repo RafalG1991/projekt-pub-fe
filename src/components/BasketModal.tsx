@@ -5,7 +5,6 @@ import "./BasketModal.css";
 import { Loader } from "./Loader";
 import {API, authFetch} from "../api/auth";
 
-/** Minimalne typy domenowe używane przez ten komponent */
 type ID = number | string;
 
 export type BasketItem = {
