@@ -58,9 +58,9 @@ export default function Register() {
               setPass(e.target.value);
               setPassTest(false);
             }
-          }} placeholder="password" type="password" required/>
+          }} placeholder="password" type="password" required minLength={8}/>
           {!passTest && <p>Minimum 8 characters, including at least one number and one special character</p>}
-          <button type="submit">Create account</button>
+          <button type="submit" disabled={!passTest}>Create account</button>
         </form>
       </div>
       <ToastContainer/>
